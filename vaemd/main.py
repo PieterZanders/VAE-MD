@@ -25,7 +25,7 @@ def main(args):
     print(f"Using device: {device}\n")
 
     hparams_filename = args.hyperparameters.split('/')[-1].split('.')[0]
-    condition_folder = os.path.join("Results", "VAE", args.condition)
+    condition_folder = os.path.join("Results", args.condition)
     save_folder = os.path.join(condition_folder, hparams_filename)
     os.makedirs(save_folder, exist_ok=True)
     
@@ -138,8 +138,8 @@ def main(args):
         
         # Save model
         torch.save(model.state_dict(), os.path.join(save_folder, f"{args.condition}_model_epochs{hparams['epochs']}.pth"))
-        torch.save(model.encoder.state_dict(), os.path.join(save_folder, f"en{args.condition}_encoder_epochs{hparams['epochs']}.pth"))
-        torch.save(model.decoder.state_dict(), os.path.join(save_folder, f"de{args.condition}_decoder_epochs{hparams['epochs']}.pth"))
+        torch.save(model.encoder.state_dict(), os.path.join(save_folder, f"{args.condition}_encoder_epochs{hparams['epochs']}.pth"))
+        torch.save(model.decoder.state_dict(), os.path.join(save_folder, f"{args.condition}_decoder_epochs{hparams['epochs']}.pth"))
         print("Model saved...\n")
 
     # Save losses
